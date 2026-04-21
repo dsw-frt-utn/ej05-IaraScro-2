@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace Dsw2026Ej5.Domain;
@@ -18,9 +19,15 @@ public class VehiculoElectrico : Vehiculo
     {
         return kwhBase;
     }
-
+    
     public override double CalcularConsumo(double kilometros)
     {
-        return kilometros * kwhBase;
+        double total = (kilometros / 100) * 16;
+        if (GetCapacidadCarga() >= 1200)
+        {
+            total = total * 1.15;
+        }
+   
+        return total;
     }
 }
